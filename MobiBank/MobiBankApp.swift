@@ -10,10 +10,10 @@ import SwiftUI
 @main
 struct MobiBankApp: App {
     var body: some Scene {
-        let dataSerivce = DataSerivce()
+        let dataService = DataSerivce()
         let mockDataService = MockDataService()
         WindowGroup {
-            ContentView(dataSerivce: mockDataService)
+            ContentView(dataService: dataService)
         }
     }
 }
