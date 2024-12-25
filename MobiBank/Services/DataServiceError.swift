@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum NetworkError: Error {
+enum DataServiceError: Error {
     case badServerResponse
     case decodingError
     case unknown
 }
 
-extension NetworkError: LocalizedError {
+extension DataServiceError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .badServerResponse:

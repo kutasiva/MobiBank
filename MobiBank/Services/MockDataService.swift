@@ -4,8 +4,9 @@
 //
 //  Created by kutasov on 23.12.2024.
 //
+import Foundation
 
-struct MockDataService: DataServiceProtocol {
+class MockDataService: DataServiceProtocol, ObservableObject {
     func getAccounts() async throws -> [Account] {
         let mockAccounts = [
             Account(
@@ -35,5 +36,59 @@ struct MockDataService: DataServiceProtocol {
         ]
 
         return mockAccounts
+    }
+
+    func getAccountTransactions(for acountId: String) async throws -> [Transaction] {
+        let sender = AccountDetail(
+            accountNumber: "1234567890",
+            bankCode: "9876",
+            iban: "DE89370400440532013000",
+            specificSymbol: "123",
+            specificSymbolParty: "456",
+            constantSymbol: "789",
+            variableSymbol: "012",
+            name: "John Doe",
+            description: "Personal Account"
+        )
+
+        let receiver = AccountDetail(
+            accountNumber: "0987654321",
+            bankCode: "6789",
+            iban: "FR7630006000011234567890189",
+            specificSymbol: "321",
+            specificSymbolParty: "654",
+            constantSymbol: "987",
+            variableSymbol: "210",
+            name: "Jane Smith",
+            description: "Business Account"
+        )
+
+        let amount = Amount(
+            value: 150.75,
+            precision: 2,
+            currency: "USD"
+        )
+
+        let transaction1 = Transaction(
+            amount: amount,
+            type: "Credit",
+            dueDate: Date(),
+            processingDate: Date(),
+            sender: sender,
+            receiver: receiver,
+            typeDescription: "Salary Payment"
+        )
+
+        let transaction2 = Transaction(
+            amount: amount,
+            type: "Debit",
+            dueDate: Date(),
+            processingDate: Date(),
+            sender: receiver,
+            receiver: sender,
+            typeDescription: "Invoice Payment"
+        )
+
+        return [transaction1, transaction2]
     }
 }
