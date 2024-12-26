@@ -6,39 +6,33 @@
 //
 import Foundation
 
-class MockDataService: DataServiceProtocol, ObservableObject {
-    func getAccounts() async throws -> [Account] {
-        let mockAccounts = [
-            Account(
-                accountNumber: "000000-0109213309",
-                bankCode: "0800",
-                transparencyFrom: "2015-01-24T00:00:00",
-                transparencyTo: "3000-01-01T00:00:00",
-                publicationTo: "3000-01-01T00:00:00",
-                actualizationDate: "2018-01-17T13:00:00",
-                balance: 165939.97,
-                currency: "CZK",
-                name: "Společenství Praha 4, Obětí 6.května 553",
-                iban: "CZ75 0800 0000 0001 0921 3309"
-            ),
-            Account(
-                accountNumber: "000000-0460043319",
-                bankCode: "0800",
-                transparencyFrom: "2015-04-08T00:00:00",
-                transparencyTo: "3000-01-01T00:00:00",
-                publicationTo: "3000-01-01T00:00:00",
-                actualizationDate: "2018-01-17T13:00:18",
-                balance: 899886.56,
-                currency: "CZK",
-                name: "Obec Nová Ves",
-                iban: "CZ63 0800 0000 0004 6004 3319"
-            ),
-        ]
+class MockDataService: DataServiceProtocol {
+    var mockAccounts = [Account(
+        accountNumber: "000000-0109213309",
+        bankCode: "0800",
+        transparencyFrom: "2015-01-24T00:00:00",
+        transparencyTo: "3000-01-01T00:00:00",
+        publicationTo: "3000-01-01T00:00:00",
+        actualizationDate: "2018-01-17T13:00:00",
+        balance: 165939.97,
+        currency: "CZK",
+        name: "Společenství Praha 4, Obětí 6.května 553",
+        iban: "CZ75 0800 0000 0001 0921 3309"
+    ),
+    Account(
+        accountNumber: "000000-0460043319",
+        bankCode: "0800",
+        transparencyFrom: "2015-04-08T00:00:00",
+        transparencyTo: "3000-01-01T00:00:00",
+        publicationTo: "3000-01-01T00:00:00",
+        actualizationDate: "2018-01-17T13:00:18",
+        balance: 899886.56,
+        currency: "CZK",
+        name: "Obec Nová Ves",
+        iban: "CZ63 0800 0000 0004 6004 3319"
+    )]
 
-        return mockAccounts
-    }
-
-    func getAccountTransactions(for acountId: String) async throws -> [Transaction] {
+    var mockTransactions: [Transaction] = {
         let sender = AccountDetail(
             accountNumber: "1234567890",
             bankCode: "9876",
@@ -90,5 +84,13 @@ class MockDataService: DataServiceProtocol, ObservableObject {
         )
 
         return [transaction1, transaction2]
+    }()
+
+    func getAccounts() async throws -> [Account] {
+        return mockAccounts
+    }
+
+    func getAccountTransactions(for acountId: String) async throws -> [Transaction] {
+        return mockTransactions
     }
 }
