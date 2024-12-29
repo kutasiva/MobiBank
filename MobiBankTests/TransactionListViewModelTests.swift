@@ -9,7 +9,7 @@
 import XCTest
 
 @MainActor
-class AccountTransactionsViewModelTests: XCTestCase {
+class TransactionListViewModelTests: XCTestCase {
     var viewModel: TransactionListViewModel!
     var mockDataService: MockDataService!
 

@@ -14,7 +14,7 @@ struct AccountResponse: Decodable {
     let accounts: [Account]
 }
 
-struct Account: Decodable {
+struct Account: Decodable, Equatable {
     let accountNumber: String
     let bankCode: String
     let transparencyFrom: String
@@ -25,4 +25,17 @@ struct Account: Decodable {
     let currency: String?
     let name: String
     let iban: String
+
+    static func ==(lhs: Account, rhs: Account) -> Bool {
+        return lhs.accountNumber == rhs.accountNumber &&
+            lhs.bankCode == rhs.bankCode &&
+            lhs.transparencyFrom == rhs.transparencyFrom &&
+            lhs.transparencyTo == rhs.transparencyTo &&
+            lhs.publicationTo == rhs.publicationTo &&
+            lhs.actualizationDate == rhs.actualizationDate &&
+            lhs.balance == rhs.balance &&
+            lhs.currency == rhs.currency &&
+            lhs.name == rhs.name &&
+            lhs.iban == rhs.iban
+    }
 }
