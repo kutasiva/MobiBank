@@ -14,11 +14,19 @@
 			remoteGlobalIDString = DDA69B9F2D19780D00B543B2;
 			remoteInfo = MobiBank;
 		};
+		DDA69CB92D26D6D700B543B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DDA69B982D19780D00B543B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DDA69B9F2D19780D00B543B2;
+			remoteInfo = MobiBank;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		DDA69BA02D19780D00B543B2 /* MobiBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobiBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDA69BEF2D1C0CF800B543B2 /* MobiBankTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobiBankTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDA69CB32D26D6D700B543B2 /* MobiBankUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobiBankUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -49,6 +57,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DDA69CB02D26D6D700B543B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -66,6 +81,7 @@
 			children = (
 				DDA69BA02D19780D00B543B2 /* MobiBank.app */,
 				DDA69BEF2D1C0CF800B543B2 /* MobiBankTests.xctest */,
+				DDA69CB32D26D6D700B543B2 /* MobiBankUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,6 +134,26 @@
 			productReference = DDA69BEF2D1C0CF800B543B2 /* MobiBankTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		DDA69CB22D26D6D700B543B2 /* MobiBankUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDA69CBB2D26D6D700B543B2 /* Build configuration list for PBXNativeTarget "MobiBankUITests" */;
+			buildPhases = (
+				DDA69CAF2D26D6D700B543B2 /* Sources */,
+				DDA69CB02D26D6D700B543B2 /* Frameworks */,
+				DDA69CB12D26D6D700B543B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DDA69CBA2D26D6D700B543B2 /* PBXTargetDependency */,
+			);
+			name = MobiBankUITests;
+			packageProductDependencies = (
+			);
+			productName = MobiBankUITests;
+			productReference = DDA69CB32D26D6D700B543B2 /* MobiBankUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -132,6 +168,10 @@
 						CreatedOnToolsVersion = 16.2;
 					};
 					DDA69BEE2D1C0CF800B543B2 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = DDA69B9F2D19780D00B543B2;
+					};
+					DDA69CB22D26D6D700B543B2 = {
 						CreatedOnToolsVersion = 16.2;
 						TestTargetID = DDA69B9F2D19780D00B543B2;
 					};
@@ -153,6 +193,7 @@
 			targets = (
 				DDA69B9F2D19780D00B543B2 /* MobiBank */,
 				DDA69BEE2D1C0CF800B543B2 /* MobiBankTests */,
+				DDA69CB22D26D6D700B543B2 /* MobiBankUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -166,6 +207,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DDA69BED2D1C0CF800B543B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDA69CB12D26D6D700B543B2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -189,6 +237,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DDA69CAF2D26D6D700B543B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -196,6 +251,11 @@
 			isa = PBXTargetDependency;
 			target = DDA69B9F2D19780D00B543B2 /* MobiBank */;
 			targetProxy = DDA69BF32D1C0CF800B543B2 /* PBXContainerItemProxy */;
+		};
+		DDA69CBA2D26D6D700B543B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DDA69B9F2D19780D00B543B2 /* MobiBank */;
+			targetProxy = DDA69CB92D26D6D700B543B2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -413,6 +473,40 @@
 			};
 			name = Release;
 		};
+		DDA69CBC2D26D6D700B543B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XK4QWUB489;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ikutasoff.MobiBankUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MobiBank;
+			};
+			name = Debug;
+		};
+		DDA69CBD2D26D6D700B543B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XK4QWUB489;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ikutasoff.MobiBankUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MobiBank;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -439,6 +533,15 @@
 			buildConfigurations = (
 				DDA69BF62D1C0CF800B543B2 /* Debug */,
 				DDA69BF72D1C0CF800B543B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DDA69CBB2D26D6D700B543B2 /* Build configuration list for PBXNativeTarget "MobiBankUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDA69CBC2D26D6D700B543B2 /* Debug */,
+				DDA69CBD2D26D6D700B543B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

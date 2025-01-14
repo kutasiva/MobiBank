@@ -6,31 +6,29 @@
 //
 import Foundation
 
-@MainActor
 @Observable final class TransactionListViewModel {
-    private let dataService: DataServiceProtocol
+    private let accountService: AccountServiceProtocol
+    @MainActor private(set) var viewState: ViewState<[TransactionViewModel]> = .idle
+    private(set) var accountId: String
 
-    private(set) var accountTransactions = [TransactionViewModel]()
-    private(set) var acountId: String
-
-    private(set) var isLoading = false
-    private(set) var errorMessage: String?
-
-    init(acountId: String, dataService: DataServiceProtocol) {
-        self.dataService = dataService
-        self.acountId = acountId
+    init(accountId: String, accountService: AccountServiceProtocol) {
+        self.accountService = accountService
+        self.accountId = accountId
     }
 
     func fetchAccountTransactions() async {
-        isLoading = true
-        errorMessage = nil
+        await setViewState(.loading)
         do {
-            let transactions = try await dataService.getAccountTransactions(for: acountId)
-            accountTransactions = transactions.map { TransactionViewModel(transaction: $0) }
+            let transactions = try await accountService.getAccountTransactions(for: accountId)
+            let transactionViewModels = transactions.map { TransactionViewModel(transaction: $0) }
+            await setViewState(.loaded(transactionViewModels))
         } catch {
-            errorMessage = "Error fetching account transactions: \(error.localizedDescription)"
-            isLoading = false
+            await setViewState(.error("Error fetching account transactions: \(error.localizedDescription)"))
         }
-        isLoading = false
+    }
+
+    @MainActor
+    private func setViewState(_ state: ViewState<[TransactionViewModel]>) {
+        viewState = state
     }
 }

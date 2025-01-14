@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol DataServiceProtocol {
+protocol AccountServiceProtocol {
     func getAccounts() async throws -> [Account]
-    func getAccountTransactions(for acountId: String) async throws -> [Transaction]
+    func getAccountTransactions(for accountId: String) async throws -> [Transaction]
 }

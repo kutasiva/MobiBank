@@ -6,30 +6,27 @@
 //
 import Foundation
 
-@MainActor
 @Observable final class AccountListViewModel {
-    let dataService: DataServiceProtocol
+    let accountService: AccountServiceProtocol
+    @MainActor private(set) var viewState: ViewState<[AccountViewModel]> = .idle
 
-    private(set) var accounts = [AccountViewModel]()
-    private(set) var isLoading = false
-    private(set) var errorMessage: String?
-
-    init(dataService: DataServiceProtocol) {
-        self.dataService = dataService
+    init(accountService: AccountServiceProtocol) {
+        self.accountService = accountService
     }
 
     func fetchAccounts() async {
-        isLoading = true
-        errorMessage = nil
+        await setViewState(.loading)
         do {
-            let accounts = try await dataService.getAccounts()
-            self.accounts = accounts.map { AccountViewModel(account: $0) }
+            let accounts = try await accountService.getAccounts()
+            let accountViewModels = accounts.map { AccountViewModel(account: $0) }
+            await setViewState(.loaded(accountViewModels))
         } catch {
-            errorMessage = "Failed to load accounts: \(error.localizedDescription)"
-            isLoading = false
+            await setViewState(.error("Failed to load accounts: \(error.localizedDescription)"))
         }
-        isLoading = false
+    }
+
+    @MainActor
+    private func setViewState(_ state: ViewState<[AccountViewModel]>) {
+        viewState = state
     }
 }
-
-

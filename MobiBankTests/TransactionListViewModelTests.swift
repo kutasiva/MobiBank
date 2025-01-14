@@ -11,16 +11,16 @@ import XCTest
 @MainActor
 class TransactionListViewModelTests: XCTestCase {
     var viewModel: TransactionListViewModel!
-    var mockDataService: MockDataService!
+    var mockAccountService: MockAccountService!
 
     override func setUpWithError() throws {
-        mockDataService = MockDataService()
-        viewModel = TransactionListViewModel(acountId: "123456", dataService: mockDataService)
+        mockAccountService = MockAccountService()
+        viewModel = TransactionListViewModel(accountId: "123456", accountService: mockAccountService)
     }
 
     override func tearDownWithError() throws {
         viewModel = nil
-        mockDataService = nil
+        mockAccountService = nil
     }
 
     func testFetchAccountTransactionsSuccess() async throws {
@@ -29,13 +29,18 @@ class TransactionListViewModelTests: XCTestCase {
         // When: Perform the action being tested
         await viewModel.fetchAccountTransactions()
 
-        // Then: Assert the expected outcomes
-        XCTAssertFalse(viewModel.isLoading, "View model should not be loading after fetching transactions.")
-        XCTAssertNil(viewModel.errorMessage, "Error message should be nil after successful fetch.")
-        XCTAssertEqual(viewModel.accountTransactions.count, 2, "There should be exactly two transactions.")
-        XCTAssertEqual(viewModel.accountTransactions.first?.typeDescription, "Salary Payment", "The first transaction description should match the mock data.")
-        XCTAssertEqual(viewModel.accountTransactions.last?.typeDescription, "Invoice Payment", "The second transaction description should match the mock data.")
+        // Then
+        switch viewModel.viewState {
+        case .loading:
+            XCTFail("Expected viewState to not be loading")
+        case .error(let message):
+            XCTFail("Expected viewState to not be error, but got: \(message)")
+        case .loaded(let transactions):
+            XCTAssertEqual(transactions.count, 2, "There should be exactly two transactions.")
+            XCTAssertEqual(transactions.first?.typeDescription, "Salary Payment", "The first transaction description should match the mock data.")
+            XCTAssertEqual(transactions.last?.typeDescription, "Invoice Payment", "The second transaction description should match the mock data.")
+        case .idle:
+            XCTFail("Expected viewState to be set, but it was nil")
+        }
     }
-
-    // Add more tests for failure scenarios and other edge cases
 }

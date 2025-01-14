@@ -1,5 +1,5 @@
 //
-//  MockDataServiceTests.swift
+//  MockAccountServiceTests.swift
 //  MobiBankTests
 //
 //  Created by kutasov on 29.12.2024.
@@ -9,8 +9,8 @@
 import XCTest
 
 @MainActor
-class MockDataServiceTests: XCTestCase {
-    var mockDataService: MockDataService!
+class MockAccountServiceTests: XCTestCase {
+    var mockAccountService: MockAccountService!
     var fixedDate: Date!
     var sender: AccountDetail!
     var receiver: AccountDetail!
@@ -101,11 +101,11 @@ class MockDataServiceTests: XCTestCase {
             )
         ]
 
-        mockDataService = MockDataService(accounts: mockAccounts, transactions: mockTransactions)
+        mockAccountService = MockAccountService(accounts: mockAccounts, transactions: mockTransactions)
     }
 
     override func tearDownWithError() throws {
-        mockDataService = nil
+        mockAccountService = nil
         fixedDate = nil
         sender = nil
         receiver = nil
@@ -120,7 +120,7 @@ class MockDataServiceTests: XCTestCase {
         let expectedAccounts = mockAccounts
 
         // When: Fetch accounts
-        let accounts = try await mockDataService.getAccounts()
+        let accounts = try await mockAccountService.getAccounts()
 
         // Then: Assert the expected outcomes
         XCTAssertEqual(accounts.count, expectedAccounts?.count, "The number of accounts should match the mock data.")
@@ -132,7 +132,7 @@ class MockDataServiceTests: XCTestCase {
         let expectedTransactions: [Transaction] = [transaction1, transaction2]
 
         // When: Fetch transactions for an account
-        let transactions = try await mockDataService.getAccountTransactions(for: "123456")
+        let transactions = try await mockAccountService.getAccountTransactions(for: "123456")
 
         // Then: Assert the expected outcomes
         XCTAssertEqual(transactions.count, expectedTransactions.count, "The number of transactions should match the mock data.")
@@ -142,7 +142,7 @@ class MockDataServiceTests: XCTestCase {
     func testAsyncBehavior() async throws {
         // When: Measure the time taken to fetch accounts
         let start = Date()
-        _ = try await mockDataService.getAccounts()
+        _ = try await mockAccountService.getAccounts()
         let end = Date()
 
         // Then: Assert that the delay is roughly 1 second

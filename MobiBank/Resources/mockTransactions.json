@@ -1,0 +1,69 @@
+
+[
+    {
+        "amount": {
+            "value": 150.75,
+            "precision": 2,
+            "currency": "USD"
+        },
+        "type": "Credit",
+        "dueDate": "2023-01-01T12:00:00Z",
+        "processingDate": "2023-01-02T12:00:00Z",
+        "sender": {
+            "accountNumber": "1234567890",
+            "bankCode": "9876",
+            "iban": "DE89370400440532013000",
+            "specificSymbol": "123",
+            "specificSymbolParty": "456",
+            "constantSymbol": "789",
+            "variableSymbol": "012",
+            "name": "John Doe",
+            "description": "Personal Account"
+        },
+        "receiver": {
+            "accountNumber": "0987654321",
+            "bankCode": "6789",
+            "iban": "FR7630006000011234567890189",
+            "specificSymbol": "321",
+            "specificSymbolParty": "654",
+            "constantSymbol": "987",
+            "variableSymbol": "210",
+            "name": "Jane Smith",
+            "description": "Business Account"
+        },
+        "typeDescription": "Salary Payment"
+    },
+    {
+        "amount": {
+            "value": 150.75,
+            "precision": 2,
+            "currency": "USD"
+        },
+        "type": "Debit",
+        "dueDate": "2023-01-01T12:00:00Z",
+        "processingDate": "2023-01-02T12:00:00Z",
+        "sender": {
+            "accountNumber": "0987654321",
+            "bankCode": "6789",
+            "iban": "FR7630006000011234567890189",
+            "specificSymbol": "321",
+            "specificSymbolParty": "654",
+            "constantSymbol": "987",
+            "variableSymbol": "210",
+            "name": "Jane Smith",
+            "description": "Business Account"
+        },
+        "receiver": {
+            "accountNumber": "1234567890",
+            "bankCode": "9876",
+            "iban": "DE89370400440532013000",
+            "specificSymbol": "123",
+            "specificSymbolParty": "456",
+            "constantSymbol": "789",
+            "variableSymbol": "012",
+            "name": "John Doe",
+            "description": "Personal Account"
+        },
+        "typeDescription": "Invoice Payment"
+    }
+]

@@ -11,10 +11,10 @@ import XCTest
 @MainActor
 class AccountListViewModelTests: XCTestCase {
     var viewModel: AccountListViewModel!
-    var mockDataService: MockDataService!
+    var mockAccountService: MockAccountService!
 
     override func setUpWithError() throws {
-        mockDataService = MockDataService(accounts: [Account(
+        mockAccountService = MockAccountService(accounts: [Account(
             accountNumber: "000000-0109213309",
             bankCode: "0800",
             transparencyFrom: "2015-01-24T00:00:00",
@@ -26,12 +26,12 @@ class AccountListViewModelTests: XCTestCase {
             name: "Společenství Praha 4, Obětí 6.května 553",
             iban: "CZ75 0800 0000 0001 0921 3309"
         )])
-        viewModel = AccountListViewModel(dataService: mockDataService)
+        viewModel = AccountListViewModel(accountService: mockAccountService)
     }
 
     override func tearDownWithError() throws {
         viewModel = nil
-        mockDataService = nil
+        mockAccountService = nil
     }
 
     func testFetchAccountsSuccess() async throws {
@@ -41,9 +41,16 @@ class AccountListViewModelTests: XCTestCase {
         await viewModel.fetchAccounts()
 
         // Then
-        XCTAssertFalse(viewModel.isLoading)
-        XCTAssertNil(viewModel.errorMessage)
-        XCTAssertEqual(viewModel.accounts.count, 1)
-        XCTAssertEqual(viewModel.accounts.first?.accountNumber, "000000-0109213309")
+        switch viewModel.viewState {
+            case .loading:
+                XCTFail("Expected viewState to not be loading")
+            case .error(let message):
+                XCTFail("Expected viewState to not be error, but got: \(message)")
+            case .loaded(let accounts):
+                XCTAssertEqual(accounts.count, 1)
+                XCTAssertEqual(accounts.first?.account.accountNumber, "000000-0109213309")
+            case .idle:
+                XCTFail("Expected viewState to be set, but it was nil")
+        }
     }
 }

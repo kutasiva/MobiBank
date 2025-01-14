@@ -9,11 +9,11 @@ import SwiftUI
 
 @main
 struct MobiBankApp: App {
-    private var dataService = DataService()
-    private var mockDataService = MockDataService()
+    private var accountService = AccountService(networkService: NetworkService())
+    // private var mockAccountService = MockAccountService()
     var body: some Scene {
         WindowGroup {
-            AccountListView(dataService: dataService)
+            AccountListView(accountService: accountService)
         }
     }
 }

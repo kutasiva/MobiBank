@@ -6,8 +6,10 @@
 //
 import Foundation
 
-let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    return formatter
-}()
+extension DateFormatter {
+    static let shortStyle: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        return formatter
+    }()
+}
